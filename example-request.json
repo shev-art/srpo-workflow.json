@@ -1,0 +1,200 @@
+{
+  "input": {
+    "workflow": {
+      "6": {
+        "inputs": {
+          "text": "Cephalyra — woman with cephalopod-inspired beauty, in a quiet museum gallery with spotlit sculptures and marble floors. She wears a pearl-beaded dress with opaque lining and subtle sparkle. close-up portrait, shallow depth of field, intense eye contact. warm tungsten practicals with deep shadows and haze. wet-look highlights on tentacles with realistic subsurface scattering; glittery mist and reflective tinsel strands in the background; pearlescent skin highlights and realistic pores, ultra-photoreal. high-angle cinematic shot, leading lines, strong composition. fashion editorial, Vogue-style, sharp focus on subject, clean color science.",
+          "clip": [
+            "11",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIP Text Encode (Positive Prompt)"
+        }
+      },
+      "8": {
+        "inputs": {
+          "samples": [
+            "13",
+            0
+          ],
+          "vae": [
+            "10",
+            0
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "9": {
+        "inputs": {
+          "filename_prefix": "ComfyUI",
+          "images": [
+            "8",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      },
+      "10": {
+        "inputs": {
+          "filename": "ae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "VAELoader"
+        }
+      },
+      "11": {
+        "inputs": {
+          "filename": "t5xxl_fp8_e4m3fn.safetensors"
+        },
+        "class_type": "DualCLIPLoader",
+        "_meta": {
+          "title": "DualCLIPLoader"
+        }
+      },
+      "12": {
+        "inputs": {
+          "filename": "flux.1-dev-SRPO-bf16.safetensors"
+        },
+        "class_type": "UNETLoader",
+        "_meta": {
+          "title": "UNETLoader"
+        }
+      },
+      "13": {
+        "inputs": {
+          "noise": [
+            "25",
+            0
+          ],
+          "guider": [
+            "22",
+            0
+          ],
+          "sampler": [
+            "16",
+            0
+          ],
+          "sigmas": [
+            "17",
+            0
+          ],
+          "latent_image": [
+            "27",
+            0
+          ]
+        },
+        "class_type": "SamplerCustomAdvanced",
+        "_meta": {
+          "title": "SamplerCustomAdvanced"
+        }
+      },
+      "16": {
+        "inputs": {
+          "text": "euler"
+        },
+        "class_type": "KSamplerSelect",
+        "_meta": {
+          "title": "KSamplerSelect"
+        }
+      },
+      "17": {
+        "inputs": {
+          "text": "normal",
+          "model": [
+            "30",
+            0
+          ]
+        },
+        "class_type": "BasicScheduler",
+        "_meta": {
+          "title": "BasicScheduler"
+        }
+      },
+      "22": {
+        "inputs": {
+          "model": [
+            "30",
+            0
+          ],
+          "conditioning": [
+            "26",
+            0
+          ]
+        },
+        "class_type": "BasicGuider",
+        "_meta": {
+          "title": "BasicGuider"
+        }
+      },
+      "25": {
+        "inputs": {
+          "value": 1059857927290239
+        },
+        "class_type": "RandomNoise",
+        "_meta": {
+          "title": "RandomNoise"
+        }
+      },
+      "26": {
+        "inputs": {
+          "value": 3.5,
+          "conditioning": [
+            "6",
+            0
+          ]
+        },
+        "class_type": "FluxGuidance",
+        "_meta": {
+          "title": "FluxGuidance"
+        }
+      },
+      "27": {
+        "inputs": {
+          "width": 1088,
+          "height": 1920,
+          "batch_size": 1
+        },
+        "class_type": "EmptySD3LatentImage",
+        "_meta": {
+          "title": "EmptySD3LatentImage"
+        }
+      },
+      "30": {
+        "inputs": {
+          "value": 1.15,
+          "model": [
+            "40",
+            0
+          ]
+        },
+        "class_type": "ModelSamplingFlux",
+        "_meta": {
+          "title": "ModelSamplingFlux"
+        }
+      },
+      "40": {
+        "inputs": {
+          "value": {},
+          "model": [
+            "12",
+            0
+          ]
+        },
+        "class_type": "Power Lora Loader (rgthree)",
+        "_meta": {
+          "title": "Power Lora Loader (rgthree)"
+        }
+      }
+    }
+  }
+}
